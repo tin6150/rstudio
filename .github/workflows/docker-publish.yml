@@ -95,4 +95,13 @@ jobs:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+        run: echo "${TAGS}"   ## | xargs -I {} cosign sign --yes {}@${DIGEST}
+        #-- run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+# disabling signing
+# this very last step is
+# what's breaking the automation at the end?
+# error:
+# Run echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+# Generating ephemeral keys...
+# Retrieving signed certificate...
+# Error: signing [ghcr.io/tin6150/rstudio:main@sha256:e823d0f7754f48b0799a6caf7a290eb012188ccc31997151246dd2504dffa351]: getting signer: getting key from Fulcio: getting CTFE public keys: updating local metadata and targets: error updating to TUF remote mirror: invalid key
