@@ -11,6 +11,12 @@ Rstuio hopefully work in Viz/GUI login node.
 
 early testing.
 
+
+docker pull          ghcr.io/tin6150/rstudio:main
+
+singularity pull --name rstudio.sif docker://ghcr.io/tin6150/rstudio:main
+
+
 ~~~~~
 
 r4eta

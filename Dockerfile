@@ -269,6 +269,7 @@ RUN echo ''  ;\
     export TERM=dumb  ;\
     apt-get install -y --quiet xfe ;\
     apt-get install -y --quiet mousepad ;\
+    apt-get install -y --quiet xterm ;\
     date | tee -a      _TOP_DIR_OF_CONTAINER_   ;\
     echo ""
 
@@ -278,6 +279,7 @@ RUN  cd / \
   && TZ=PST8PDT date  >> _TOP_DIR_OF_CONTAINER_  \
   && echo  "Dockerfile 2024.0329.1717 hello_world"        >> _TOP_DIR_OF_CONTAINER_   \
   && echo  "Dockerfile 2022.0127 ghcr-r-home-test tbd"     >> _TOP_DIR_OF_CONTAINER_   \
+  && echo  "Dockerfile 2024.0420 xterm"     >> _TOP_DIR_OF_CONTAINER_   \
   && echo  "Grand Finale"
 
 #- ENV TZ America/Los_Angeles  
