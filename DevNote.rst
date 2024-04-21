@@ -8,6 +8,11 @@ singularity pull --name rstudio.sif docker://ghcr.io/tin6150/rstudio:main
 
 in wsl, docker run like below result in R in text mode only :
 docker run -it --rm   ghcr.io/tin6150/rstudio:main --no-save
+
+# duh, cuz rstudio gui app wasn't installed!  it was invoking R
+
+docker run -it --rm --entrypoint=xfe  ghcr.io/tin6150/rstudio:main
+# xfe is like far ?
  
 
 
