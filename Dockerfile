@@ -50,12 +50,18 @@ RUN echo  ''  ;\
     echo '==================================================================' ;\
     echo "git cloning the repo for reference/tracking" | tee -a _TOP_DIR_OF_CONTAINER_ ;\
     apt-get -y --quiet install git-all  ;\
-    test -d /opt/gitrepo  || mkdir -p /opt/gitrepo        ;\
-    cd /opt/gitrepo       ;\
-    test -d /opt/gitrepo/r4eta  || git clone https://github.com/tin6150/r4eta.git  ;\
-    cd /opt/gitrepo/r4eta &&  git pull             ;\
-    cd /     ;\
-    echo ""  ;\
+    test -d /opt/gitrepo/container  || mkdir -p /opt/gitrepo/container        ;\
+    #cd /opt/gitrepo       ;\
+    #test -d /opt/gitrepo/r4eta  || git clone https://github.com/tin6150/r4eta.git  ;\
+    #cd /opt/gitrepo/r4eta &&  git pull             ;\
+    cd /    ;\
+    echo ""  
+
+COPY . /opt/gitrepo/container
+
+RUN echo ''  ;\
+    export TERM=dumb  ;\
+    cd   /opt/gitrepo/container   ;\
     echo '==================================================================' ;\
     echo "install for rstudio GUI (Qt)"      | tee -a _TOP_DIR_OF_CONTAINER_  ;\
     date | tee -a      _TOP_DIR_OF_CONTAINER_                                 ;\
@@ -63,13 +69,7 @@ RUN echo  ''  ;\
     apt-get -y --quiet install apt-file ;\
     apt-file update ;\
     bash install_dependencies.sh 2>&1 | tee install_dependencies.OUT.TXT     ;\
-    cd /    ;\
-    echo ""  
-
-COPY . /r4eta
-
-RUN echo ''  ;\
-    cd   /   ;\
+    #cd   /   ;\
     echo '==================================================================' ;\
     echo '==================================================================' ;\
     echo "installing jupyter notebook server" | tee -a _TOP_DIR_OF_CONTAINER_ ;\
@@ -77,11 +77,10 @@ RUN echo ''  ;\
     echo '==================================================================' ;\
     echo '==================================================================' ;\
     echo '' ;\
-    export TERM=dumb  ;\
     # pre-req for anaconda (jupyter notebook server)
     apt-get -y --quiet install apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor    1 libxcomposite1 libasound2 libxi6 libxtst6 ;\
-    bash -x ./r4eta/install_jupyter.sh 2>&1   | tee install_jupyter.log ;\
-    cp ./r4eta/hello_world.R ./r4eta/hello_world_jupyter_R.ipynb / ;\
+    bash -x ./opt/gitrepo/container/install_jupyter.sh 2>&1   | tee install_jupyter.log ;\
+    cp /opt/gitrepo/container/hello_world.R /opt/gitrepo/container/hello_world_jupyter_R.ipynb / ;\
     # IRkernel, assume Jupyter Notebook already installed &&
     # add kernel spec to Jupyter, depends on jupyter already installed
     ## this method didn't work source /etc/bashrc  && Rscript --quiet --no-readline --slave -e 'install.packages("IRkernel", repos = "http://cran.us.r-project.org")' && Rscript --no-readline --slave -e "IRkernel::installspec(user = FALSE)" && jupyter kernelspec list | tee -a install_jupyter_IRkernel.log ;\
@@ -252,7 +251,7 @@ RUN echo ''  ;\
     Rscript --quiet --no-readline --slave -e 'library()'   | sort | tee R_library_list.out.5.txt  ;\
     echo "Done installing packages cran packages - part 5" | tee -a _TOP_DIR_OF_CONTAINER_     ;\
     date | tee -a      _TOP_DIR_OF_CONTAINER_   ;\
-    echo "Dockerfile" | tee  _CONTAINER_tin6150_r4eta_  ;\
+    echo "Dockerfile" | tee  _CONTAINER_tin6150_rstudio_  ;\
     echo ""
 
 RUN echo ''  ;\
@@ -270,11 +269,11 @@ RUN echo ''  ;\
 
 RUN  cd / \
   && touch _TOP_DIR_OF_CONTAINER_  \
-  && touch _TOP_DIR_OF_CONTAINER_r4eta_  \
+  && touch _TOP_DIR_OF_CONTAINER_rstudio_  \
   && TZ=PST8PDT date  >> _TOP_DIR_OF_CONTAINER_  \
   && echo  "Dockerfile 2024.0329.1717 hello_world"        >> _TOP_DIR_OF_CONTAINER_   \
   && echo  "Dockerfile 2022.0127 ghcr-r-home-test tbd"     >> _TOP_DIR_OF_CONTAINER_   \
-  && echo  "Dockerfile 2024.0420 xterm"     >> _TOP_DIR_OF_CONTAINER_   \
+  && echo  "Dockerfile 2024.0421 xterm"     >> _TOP_DIR_OF_CONTAINER_   \
   && echo  "Grand Finale"
 
 #- ENV TZ America/Los_Angeles  
