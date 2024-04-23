@@ -7,7 +7,7 @@ apt-file update
     echo '==================================================================' 
     echo "install for R" 
     echo '==================================================================' 
-    apt-get -y --quiet install r-base rbase-dev r-base-html
+    apt-get -y --quiet install r-base r-base-dev r-base-html
 
 ## install rstudio
 
