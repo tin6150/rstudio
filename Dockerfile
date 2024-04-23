@@ -14,7 +14,8 @@
 #FROM r-base:4.1.2
 # r-base:4.1.1  # ca 2021.0815
 # r-base:4.3.3  # ca 2024.04
-FROM r-base:4.3.3
+#FROM r-base:4.3.3 # broken dependencies for rstudio :/
+FROM ubuntu:20.04
 MAINTAINER Tin (at) LBL.gov
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -57,7 +58,8 @@ RUN echo  ''  ;\
     cd /    ;\
     echo ""  
 
-COPY . /opt/gitrepo/container
+COPY     .   /opt/gitrepo/container
+WORKDIR      /opt/gitrepo/container
 
 RUN echo ''  ;\
     export TERM=dumb  ;\
@@ -293,3 +295,5 @@ ENTRYPOINT [ "R" ]
 # if no defined ENTRYPOINT, default to bash inside the container
 # docker run  -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/tmp/home  --user=$(id -u):$(id -g) --entrypoint rstudio tin6150/r4eta
 # careful not to cover /home/username (for this container)
+
+# CMD ["Rscript", "myscript.R"]

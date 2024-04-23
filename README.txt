@@ -13,6 +13,11 @@ early testing.
 
 
 docker pull          ghcr.io/tin6150/rstudio:main
+docker run -it --rm --entrypoint=/bin/bash          ghcr.io/tin6150/rstudio:main
+
+
+#r4eta notes (when can get rstudio to install here...):
+docker run  -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/tmp/home  --user=$(id -u):$(id -g) --entrypoint rstudio tin6150/rstudio
 
 singularity pull --name rstudio.sif docker://ghcr.io/tin6150/rstudio:main
 
