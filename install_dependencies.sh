@@ -31,9 +31,10 @@ mkdir -p Downloads &&  cd Downloads
 # apt-get -y --quiet install ./rstudio4deb10.deb    
 
 # Ubuntu 22 / Debian 12:
-sudo apt-get install gdebi-core
+apt-get install gdebi-core
 wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb
-sudo gdebi rstudio-server-2024.04.2-764-amd64.deb
+#gdebi rstudio-server-2024.04.2-764-amd64.deb
+apt-get install -y --quiet  rstudio-server-2024.04.2-764-amd64.deb
 echo $?
 echo "==================================="
 
