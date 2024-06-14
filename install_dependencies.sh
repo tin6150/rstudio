@@ -13,7 +13,7 @@ apt-file update
 
 
     echo '==================================================================' 
-    echo "install for rstudio GUI (Qt)" 
+    echo "install for rstudio GUI (Qt) dependencies" 
     echo '=================================================================='
     #-- rstudio dont seems to exist in Debian bullseye/sid :/
     #-- apt-get --quiet install rstudio  ;\
@@ -23,6 +23,9 @@ apt-file update
 
 
 
+    echo '==================================================================' 
+    echo "fetch + install for rstudio" 
+    echo '=================================================================='
 
 mkdir -p Downloads &&  cd Downloads 
 # Debian 10:
@@ -32,15 +35,19 @@ mkdir -p Downloads &&  cd Downloads
 
 # Ubuntu 22 / Debian 12:
 apt-get install gdebi-core
-wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb
+wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb 
 #gdebi rstudio-server-2024.04.2-764-amd64.deb
-apt-get install -y --quiet  rstudio-server-2024.04.2-764-amd64.deb
+apt-get install -y --quiet  ./rstudio-server-2024.04.2-764-amd64.deb
 echo $?
-echo "==================================="
+echo "======done=install=rstudio=server=========================="
+echo ""
 
 
-# xfe  is X win commander, like far?  or xfce file manager?
+    echo '==================================================================' 
+    echo "install other misc" 
+    echo '=================================================================='
 
+    # xfe  is X win commander, like far?  or xfce file manager?
     apt-get install -y --quiet xfe 
     apt-get install -y --quiet mousepad 
     apt-get install -y --quiet xterm  x11-xserver-utils x11-apps 
