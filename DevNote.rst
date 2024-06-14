@@ -1,5 +1,10 @@
 
 
+brach main became ub20 on 2024-0614, as intend to promot deb12 (ubuntu 22.04) to main.
+
+~~~~~
+
+
 Rstudio worked using apptainer (invoked from wsl2 env!) per README.txt
 but docker doesn't work yet.
 
