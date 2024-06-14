@@ -1,5 +1,17 @@
 
 
+Rstudio worked using apptainer (invoked from wsl2 env!) per README.txt
+but docker doesn't work yet.
+
+apptainer execution works (lots of warnings on start notwithstanding);                                                  docker execution for strudio have problem connecting to X server.
+
+
+
+docker pull ghcr.io/tin6150/rstudio:main                                                                                docker run  -it --rm  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/tmp/home  --user=$(id -u):$(id -g) --entrypoint rstudio tin6150/rstudio
+
+
+older notes below.
+
 
 
 
@@ -14,6 +26,39 @@ docker run -it --rm   ghcr.io/tin6150/rstudio:main --no-save
 docker run -it --rm --entrypoint=xfe  ghcr.io/tin6150/rstudio:main
 # xfe is like far ?
  
+
+~~~~~
+
+r4eta
+=====
+
+Container for R with libraries for LBNL Energy Technology Area project
+Now with Jupyter Notebook server
+
+
+Example running R script via Docker
+-----------------------------------
+
+# R script inside the container
+docker run                -it --entrypoint=Rscript  ghcr.io/tin6150/rstudio:main /opt/gitrepo/hello_world.R
+
+
+# R script in home dir, bind mounted to container
+docker run -v "$PWD":/mnt -it --entrypoint=Rscript  ghcr.io/tin6150/r4eta:master  /mnt/drJin.R                
+
+# running a bash shell, can call R from there
+docker run                -it --entrypoint=bash     ghcr.io/tin6150/r4eta:master  
+
+
+Example running R script via Singularity
+----------------------------------------
+
+singularity pull  docker://ghcr.io/tin6150/r4eta:master  
+singularity shell docker://ghcr.io/tin6150/r4eta:master  # get bash prompt 
+singularity run   docker://ghcr.io/tin6150/r4eta:master  # get R    prompt
+singularity exec  docker://ghcr.io/tin6150/r4eta:master  Rscript ./drJin.R                    # R script in current working dir
+singularity exec  docker://ghcr.io/tin6150/r4eta:master  Rscript /opt/gitrepo/r4eta/drJin.R   # R script inside container
+
 
 ~~~~~
 
