@@ -24,7 +24,7 @@ apt-file update
 
 
     echo '==================================================================' 
-    echo "fetch + install for rstudio" 
+    echo "fetch + install for rstudio IDE" 
     echo '=================================================================='
 
 mkdir -p Downloads &&  cd Downloads 
@@ -33,11 +33,14 @@ mkdir -p Downloads &&  cd Downloads
 # wget --quiet https://download1.rstudio.org/electron/focal/amd64/rstudio-2023.12.1-402-amd64.deb -O rstudio4deb10.deb 
 # apt-get -y --quiet install ./rstudio4deb10.deb    
 
-# Ubuntu 22 / Debian 12:
-apt-get install gdebi-core
-wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb 
+# Ubuntu 22 / Debian 12, IDE
+# Ubuntu 22 / Debian 12, server, not whats needed:
+wget --quiet https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb -O rstudio4deb.deb 
+apt-get -y --quiet install ./rstudio4deb.deb    
+#apt-get install -y --quiet gdebi-core
+# wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb  # rstudio server!
 #gdebi rstudio-server-2024.04.2-764-amd64.deb
-apt-get install -y --quiet  ./rstudio-server-2024.04.2-764-amd64.deb
+#apt-get install -y --quiet  ./rstudio-server-2024.04.2-764-amd64.deb
 echo $?
 echo "======done=install=rstudio=server=========================="
 echo ""
