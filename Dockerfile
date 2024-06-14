@@ -15,7 +15,8 @@
 # r-base:4.1.1  # ca 2021.0815
 # r-base:4.3.3  # ca 2024.04
 #FROM r-base:4.3.3 # broken dependencies for rstudio :/
-FROM ubuntu:20.04
+# FROM ubuntu:22.04  # Debian 12 base
+FROM ubuntu:22.04
 MAINTAINER Tin (at) LBL.gov
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -269,14 +270,16 @@ RUN echo ''  ;\
     date | tee -a      _TOP_DIR_OF_CONTAINER_   ;\
     echo ""
 
+ENV DBG_APP_VER  "Dockerfile 2024.0614"
+ENV DBG_DOCKERFILE "Dockerfile deb12"
+
 RUN  cd / \
   && touch _TOP_DIR_OF_CONTAINER_  \
   && touch _TOP_DIR_OF_CONTAINER_rstudio_  \
   && TZ=PST8PDT date  >> _TOP_DIR_OF_CONTAINER_  \
-  && echo  "Dockerfile 2024.0329.1717 hello_world"        >> _TOP_DIR_OF_CONTAINER_   \
-  && echo  "Dockerfile 2022.0127 ghcr-r-home-test tbd"     >> _TOP_DIR_OF_CONTAINER_   \
-  && echo  "Dockerfile 2024.0421 xterm"     >> _TOP_DIR_OF_CONTAINER_   \
-  && echo  "Grand Finale"
+  && echo  "$DBG_APP_VER"           >> _TOP_DIR_OF_CONTAINER_   \
+  && echo  "$DBG_DOCKERFILE"        >> _TOP_DIR_OF_CONTAINER_   \
+  && echo  "Grand Finale"     | tee -a _TOP_DIR_OF_CONTAINER_  
 
 #- ENV TZ America/Los_Angeles  
 ENV TZ America/Los_Angeles 

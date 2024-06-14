@@ -23,22 +23,26 @@ apt-file update
 
 
 
+
 mkdir -p Downloads &&  cd Downloads 
+# Debian 10:
 # wget --quiet https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5033-amd64.deb  -O rstudio4deb10.deb ;\
 # wget --quiet https://download1.rstudio.org/electron/focal/amd64/rstudio-2023.12.1-402-amd64.deb -O rstudio4deb10.deb 
-wget --quiet https://download1.rstudio.org/electron/focal/amd64/rstudio-2023.12.1-402-amd64.deb -O rstudio4deb10.deb 
-echo $?
-apt-get -y --quiet install ./rstudio4deb10.deb    
+# apt-get -y --quiet install ./rstudio4deb10.deb    
+
+# Ubuntu 22 / Debian 12:
+sudo apt-get install gdebi-core
+wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb
+sudo gdebi rstudio-server-2024.04.2-764-amd64.deb
 echo $?
 echo "==================================="
 
 
-# xfe  is far?  or xfce file manager?
+# xfe  is X win commander, like far?  or xfce file manager?
 
     apt-get install -y --quiet xfe 
     apt-get install -y --quiet mousepad 
     apt-get install -y --quiet xterm  x11-xserver-utils x11-apps 
-
 
 
 date

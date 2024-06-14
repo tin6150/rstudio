@@ -33,9 +33,6 @@ Run R interactively ::
         ./rstudio.SIF
         q() # exit R and container session.
 
-Run rstudio interactively ::
-       apptainer exec rstudio.SIF  rstudio    
-
 
 Interact with the container, run bash, R, Rscript INSIDE the container ::
         apptainer exec  rstudio.SIF  bash
