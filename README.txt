@@ -14,9 +14,6 @@ apptainer exec rstudio.SIF  R          # text-based R session
 
 
 
-
-
-
 Text Terminal based run
 ========================
 

@@ -6,6 +6,11 @@ but docker doesn't work yet.
 apptainer execution works (lots of warnings on start notwithstanding);                                                  docker execution for strudio have problem connecting to X server.
 
 
+apptainer exec docker://ghcr.io/tin6150/rstudio:main bash
+# image saved in APPTAINER cache dir. eg
+# ~/.apptainer/cache/oci-tmp/25bb8f7cb2aaa876be71cb6099d128bfc09fa8cf6950e816b5c21edd5162dae7
+
+
 
 docker pull ghcr.io/tin6150/rstudio:main                                                                                docker run  -it --rm  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/tmp/home  --user=$(id -u):$(id -g) --entrypoint rstudio tin6150/rstudio
 
