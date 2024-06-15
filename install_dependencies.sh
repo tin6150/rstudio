@@ -37,6 +37,7 @@ mkdir -p Downloads &&  cd Downloads
 # Ubuntu 22 / Debian 12, server, not whats needed:
 wget --quiet https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb -O rstudio4deb.deb 
 apt-get -y --quiet install ./rstudio4deb.deb    
+rm ./rstudio4deb.deb
 #apt-get install -y --quiet gdebi-core
 # wget --quiet https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb  # rstudio server!
 #gdebi rstudio-server-2024.04.2-764-amd64.deb

@@ -1,11 +1,6 @@
 # Dockerfile for creating R container 
 # and add specific library needed by projects by LBNL/ETA
-# local build should work, but it no longer has all the updates done Dockerfile.metabolic
-# docker build -t tin6150/r4eta -f Dockerfile .  | tee Dockerfile.monolithic.log 
 
-# rscript has its own set of fairly long install...
-# (model after cmaq container)
- 
 
 #FROM r-base:3.6.2
 #FROM r-base:3.6.3
@@ -270,7 +265,7 @@ RUN echo ''  ;\
     date | tee -a      _TOP_DIR_OF_CONTAINER_   ;\
     echo ""
 
-ENV DBG_APP_VER  "Dockerfile 2024.0614"
+ENV DBG_APP_VER  "Dockerfile 2024.0614b"
 ENV DBG_DOCKERFILE "Dockerfile deb12"
 
 RUN  cd / \
@@ -291,8 +286,8 @@ ENV TEST_DOCKER_ENV_2   Can_use_ADD_to_make_ENV_avail_in_build_process
 ENV TEST_DOCKER_ENV_REF https://vsupalov.com/docker-arg-env-variable-guide/#setting-env-values
 # but how to append, eg add to PATH?
 
-#ENTRYPOINT ["cat", "/_TOP_DIR_OF_CONTAINER_"]
 #ENTRYPOINT [ "/bin/bash" ]
+#ENTRYPOINT [ "/usr/bin/R" ]
 #ENTRYPOINT [ "/usr/bin/rstudio" ]
 ENTRYPOINT [ "R" ]
 # if no defined ENTRYPOINT, default to bash inside the container
